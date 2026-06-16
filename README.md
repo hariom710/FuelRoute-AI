@@ -106,17 +106,7 @@ The fuel optimization uses a heuristic strategy:
 5. If no station exists in that state, fall back to the globally cheapest station
 6. Calculate gallons needed (capped at 50-gallon tank) and multiply by the station's price
 
-## Performance Characteristics
 
-| Operation | Complexity | Notes |
-|-----------|-----------|-------|
-| CSV loading | O(n) once | 8,151 stations loaded at startup, never re-read |
-| State lookup | O(1) | 50-entry bounding box table scan |
-| Station lookup by state | O(1) dict + O(s) min | s = stations in that state (typically < 200) |
-| Global cheapest station | O(1) | Cached at load time |
-| Route interpolation | O(S * k) | S = fuel stops (≤ 6), k = route steps |
-| **External API calls** | **3 total** | 2 geocode + 1 OSRM route |
-| **HTTP connections** | **Pooled** | `requests.Session` reuses TCP sockets |
 
 ## External Services
 
@@ -152,11 +142,4 @@ backend/
 4. Enter the request JSON
 5. Click Send
 
-## Loom Demo Script (Max 5 min)
 
-1. **0:00-0:30** — Project overview and structure
-2. **0:30-1:00** — Show the API endpoint in Postman
-3. **1:00-2:00** — Demo NYC to LA request
-4. **2:00-3:00** — Explain fuel optimization algorithm and state lookup
-5. **3:00-4:00** — Walk through the code
-6. **4:00-5:00** — Show results and discuss performance characteristics
