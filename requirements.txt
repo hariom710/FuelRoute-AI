@@ -1,0 +1,5 @@
+Django>=5.0,<6.0
+djangorestframework>=3.14
+requests>=2.31
+geopy>=2.4
+numpy>=1.26
